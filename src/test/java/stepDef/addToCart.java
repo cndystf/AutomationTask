@@ -12,12 +12,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class logout {
+public class addToCart {
     WebDriver driver;
     String baseUrl = "https:www.saucedemo.com/";
 
-    @Given("user open url via browser")
-    public void userOpenUrlViaBrowser() {
+    @Given("user open browser and url")
+    public void userOpenBrowserAndUrl() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get(baseUrl);
@@ -27,42 +27,35 @@ public class logout {
         Assert.assertEquals(loginPageAssert, "Swag Labs");
     }
 
-    @And("user input valid username")
-    public void userInputValidUsername() {
+    @And("user input a valid username")
+    public void userInputAValidUsername() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
     }
 
-    @And("user input valid password")
-    public void userInputValidPassword() {
+    @And("user input a valid password")
+    public void userInputAValidPassword() {
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
 
-    @When("user click login")
-    public void userClickLogin() {
+    @When("user login")
+    public void userLogin() {
         driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
     }
 
-    @Then("user redirected to homepage and menu")
-    public void userRedirectedToHomepageAndMenu() {
+    @Then("user redirected to home page")
+    public void userRedirectedToHomePage() {
         String homepageAssert = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[1]/div[2]/div")).getText();
         Assert.assertEquals(homepageAssert, "Swag Labs");
-        driver.findElement(By.xpath("//*[@id=\"react-burger-menu-btn\"]")).isDisplayed();
     }
 
-    @When("user click menu button")
-    public void userClickMenuButton() {
-        driver.findElement(By.xpath("//*[@id=\"react-burger-menu-btn\"]")).click();
+    @When("user add desired item to cart")
+    public void userAddDesiredItemToCart() {
+        driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-backpack\"]")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    @And("user click logout button")
-    public void userClickLogoutButton() {
-        driver.findElement(By.id("logout_sidebar_link")).click();
-    }
-
-    @Then("user back to login page")
-    public void userBackToLoginPage() {
-        String loginPageAssert = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]")).getText();
-        Assert.assertEquals(loginPageAssert, "Swag Labs");
+    @Then("user see number badge in cart icon")
+    public void userSeeNumberBadgeInCartIcon() {
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span")).isDisplayed());
     }
 }

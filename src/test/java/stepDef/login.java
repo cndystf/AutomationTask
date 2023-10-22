@@ -42,17 +42,20 @@ public class login {
         driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
     }
 
+    //Positive Result
     @Then("user redirected to homepage")
     public void userRedirectedToHomepage() {
         String homepageAssert = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[1]/div[2]/div")).getText();
         Assert.assertEquals(homepageAssert, "Swag Labs");
     }
 
+    //Negative Step
     @And("user input invalid password")
     public void userInputInvalidPassword() {
         driver.findElement(By.id("password")).sendKeys("wrong_pass");
     }
 
+    //Negative Result
     @Then("user see error message")
     public void userSeeErrorMessage() {
         String errorAssert = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3")).getText();
