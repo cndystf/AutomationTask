@@ -68,8 +68,6 @@ public class checkout {
     @Then("user redirected to your cart page")
     public void userRedirectedToYourCartPage() {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).isDisplayed());
-        //Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]/div[1]")).isDisplayed());
-        //Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]")).isDisplayed());
     }
 
     @When("user click checkout button")
@@ -105,7 +103,6 @@ public class checkout {
     @Then("user redirected to checkout overview page")
     public void userRedirectedToCheckoutOverviewPage() {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).isDisplayed());
-        // Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"checkout_summary_container\"]/div/div[2]/div[8]")).isDisplayed());
     }
 
     @When("user click finish button")
